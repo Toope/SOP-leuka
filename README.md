@@ -14,12 +14,15 @@ source devel/setup.bash
 Tuloksena tällainen rakenne:
 ![Vaihe 1](img/vaihe1.PNG)
 
-2. Kopioi kansio 'leuka' oman workspacen src kansioon (jätä src-kansion sisäinen CMakeLists.txt rauhaan) ja tee catkin_make
-Kansio src sisältö ennen:
+2. Kopioi kansio 'leuka' oman workspacen src kansioon (jätä src-kansion sisäinen CMakeLists.txt rauhaan) 
+
+Kansion src sisältö ennen:
 ![Vaihe 2](img/vaihe2.PNG)
 
 Ja jälkeen:
 ![Vaihe 3](img/vaihe3.PNG)
+
+3. Ja tee sitten catkin_make 
 
 ```
 cd oma_ws
@@ -29,13 +32,15 @@ Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
 ![Vaihe 4](img/vaihe4.PNG)
 
 
-  - jos tulee ongelmia puuttuvien pakettien kanssa, asenna ne näin: sudo apt-get ros-melodic-puuttuva-paketti, esim. sudo apt-get ros-melodic-rosserial-arduino
-  - jos tulee ongelmia puuttuvien python-kirjastojen kanssa, asenna ne näin: pip install kirjaston_nimi, esim. pip install pygame
+- jos tulee ongelmia puuttuvien pakettien kanssa, asenna ne näin: sudo apt-get ros-melodic-puuttuva-paketti, esim. sudo apt-get ros-melodic-rosserial-arduino
+- jos tulee ongelmia puuttuvien python-kirjastojen kanssa, asenna ne näin: pip install kirjaston_nimi, esim. pip install pygame
 
-3. Yhdistä arduino koneeseen (ja odota hetki että kone tunnistaa arduinon) ja aja seuraava komento, jolloin koodi uploadaa arduinolle
+4. Yhdistä arduino koneeseen (ja odota hetki että kone tunnistaa arduinon) ja servo arduinoon (servon datapinni arduinon pinniin 1, VCC arduinon pinniin 5V ja GND arduinon pinniin GND) ja aja seuraava komento, jolloin koodi uploadaa arduinolle
 ```
 catkin_make leuka_firmware_lservo-upload
 ```
+Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
+![Vaihe 5](img/vaihe5.PNG)
 
 4. Avaa väh. kolme eri komentoriviä auki käyttöä varten
 	(1) roscore
@@ -54,6 +59,9 @@ catkin_make leuka_firmware_lservo-upload
 	- rostopic pub prosody std_msgs/String <asetus>  (ei toteutettu vielä)
 
 Jos tulee erroria, että pakettia leuka ei löydetä, tee catkin_make ja source uudestaan. 
+
+Tältä näyttää kokonaisuudessaan puhesynteesin + servon ajaminen. Vaihe (2) heittää mismatch-erroria mutta kaikki toimii kuitenkin kuten pitää. 
+![Vaihe 6](img/vaihe6.PNG)
 
 
 
