@@ -11,7 +11,7 @@ cd oma_ws
 catkin_make
 source devel/setup.bash
   ```
-![Vaihe 1](https://github.com/Toope/SOP-leuka/tree/master/img/vaihe1.png)
+[Vaihe 1](img/vaihe1.png)
 
 2. Kopioi kansio 'leuka' oman workspacen src kansioon (jätä src-kansion sisäinen CMakeLists.txt rauhaan) ja tee catkin_make
 ```
