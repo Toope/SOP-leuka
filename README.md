@@ -11,13 +11,24 @@ cd oma_ws
 catkin_make
 source devel/setup.bash
   ```
+Tuloksena tällainen rakenne:
 ![Vaihe 1](img/vaihe1.PNG)
 
 2. Kopioi kansio 'leuka' oman workspacen src kansioon (jätä src-kansion sisäinen CMakeLists.txt rauhaan) ja tee catkin_make
+Kansio src sisältö ennen:
+![Vaihe 2](img/vaihe2.PNG)
+
+Ja jälkeen:
+![Vaihe 3](img/vaihe3.PNG)
+
 ```
 cd oma_ws
 catkin_make
 ```
+Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
+![Vaihe 4](img/vaihe4.PNG)
+
+
   - jos tulee ongelmia puuttuvien pakettien kanssa, asenna ne näin: sudo apt-get ros-melodic-puuttuva-paketti, esim. sudo apt-get ros-melodic-rosserial-arduino
   - jos tulee ongelmia puuttuvien python-kirjastojen kanssa, asenna ne näin: pip install kirjaston_nimi, esim. pip install pygame
 
