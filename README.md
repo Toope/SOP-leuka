@@ -42,7 +42,7 @@ catkin_make leuka_firmware_lservo-upload
 Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
 ![Vaihe 5](img/vaihe5.PNG)
 
-4. Avaa 5 eri komentoriviä auki käyttöä varten
+5. Avaa 5 eri komentoriviä auki käyttöä varten
 	1. roscore
 	2. rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=1000000
 	3. rosrun leuka tts.py   (puhesynteesin käynnistys)
@@ -55,9 +55,12 @@ Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
 	- rostopic pub prosody std_msgs/String <asetus>  (ei toteutettu vielä)
 
 Jos tulee erroria, että pakettia leuka ei löydetä, tee catkin_make ja source uudestaan. 
-Pelkän servon toimintaa voidaan testata avaamalla komentorivit 1 ja 2 ja kolmanneksi jompikumpi seuraavista:
+
+Pelkän servon toimintaa voidaan testata avaamalla komentorivit (i) ja (ii) ja kolmanneksi jompikumpi seuraavista:
 - rostopic pub servo std_msgs/UInt16 <tähän luku 1 tai 0> (jos haluat testata servon yhtä liikahdusta)
 - rosrun leuka talker   (jos haluat servon liikkuvan eestaas nopeasti -testi)
+
+Pelkän puhesynteesin toimintaa voidaan testata jättämällä komentorivi (ii) käynnistys pois välistä.
 
 Tältä näyttää kokonaisuudessaan puhesynteesin + servon ajaminen. Vaihe (2) heittää mismatch-erroria mutta kaikki toimii kuitenkin kuten pitää. 
 ![Vaihe 6](img/vaihe6.PNG)
