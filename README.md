@@ -44,8 +44,8 @@ Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
 
 5. Avaa 5 eri komentoriviä auki käyttöä varten
 	1. roscore
-	2. rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=1000000
-	3. rosrun leuka tts.py   (puhesynteesin käynnistys)
+	2. rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=1000000  (servon noden käynnistys)
+	3. rosrun leuka tts.py   (puhesynteesin noden käynnistys)
 	4. rostopic pub text std_msgs/String "testilause."   (text-kanavalle annetaan syötteeksi haluttu lause)
 	5. rostopic pub servo_ready std_msgs/Bool True       (tämän lipun asettaminen aloittaa puheen)
 
@@ -62,7 +62,7 @@ Pelkän servon toimintaa voidaan testata avaamalla komentorivit (i) ja (ii) ja k
 
 Pelkän puhesynteesin toimintaa voidaan testata jättämällä komentorivi (ii) käynnistys pois välistä.
 
-Tältä näyttää kokonaisuudessaan puhesynteesin + servon ajaminen. Vaihe (2) heittää mismatch-erroria mutta kaikki toimii kuitenkin kuten pitää. 
+Tältä näyttää kokonaisuudessaan puhesynteesin + servon ajaminen. Vaihe (ii) heittää mismatch-erroria mutta kaikki toimii kuitenkin kuten pitää. 
 ![Vaihe 6](img/vaihe6.PNG)
 
 
