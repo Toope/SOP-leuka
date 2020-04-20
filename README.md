@@ -52,8 +52,8 @@ Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
 	Halutessa voidaan myös muuttaa asetuksia, avaa jokaista varten oma komentorivi kun puhesynteesi on käynnistetty
 	- rostopic pub gender std_msgs/String <tähän "woman" tai "man"> (huom! ei valittavissa formanttisynteesille)
 	- rostopic pub tts_type std_msgs/String <tähän "concat" tai "formant"> (synteesin tyyppi)
-	- rostopic pub language std_msgs/String <kieli>  (tukee toistaiseksi vain suomen kieltä)
-	- rostopic pub prosody std_msgs/String <asetus>  (ei toteutettu vielä)
+	- rostopic pub language std_msgs/String <kieli>   (tukee toistaiseksi vain suomen kieltä)
+	- rostopic pub prosody std_msgs/String <asetus>   (ei toteutettu vielä)
 
 Jos tulee erroria, että pakettia leuka ei löydetä, tee catkin_make ja source uudestaan. 
 
