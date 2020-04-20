@@ -43,11 +43,11 @@ Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
 ![Vaihe 5](img/vaihe5.PNG)
 
 5. Avaa 5 eri komentoriviä auki käyttöä varten
-	1. roscore
-	2. rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=1000000  (servon noden käynnistys)
-	3. rosrun leuka tts.py   (puhesynteesin noden käynnistys)
-	4. rostopic pub text std_msgs/String "testilause."   (text-kanavalle annetaan syötteeksi haluttu lause)
-	5. rostopic pub servo_ready std_msgs/Bool True       (tämän lipun asettaminen aloittaa puheen)
+	1.  ```roscore ```
+	2.  ``` rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=1000000  ```  (servon noden käynnistys)
+	3.  ```rosrun leuka tts.py  ```  (puhesynteesin noden käynnistys)
+	4.  ```rostopic pub text std_msgs/String "testilause."   ``` (text-kanavalle annetaan syötteeksi haluttu lause)
+	5.  ``` rostopic pub servo_ready std_msgs/Bool True  ```       (tämän lipun asettaminen aloittaa puheen)
 
 	Halutessa voidaan myös muuttaa asetuksia, avaa jokaista varten oma komentorivi kun puhesynteesi on käynnistetty
 	- rostopic pub gender std_msgs/String <tähän "woman" tai "man">
