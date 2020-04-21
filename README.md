@@ -51,9 +51,7 @@ Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
 
 	Halutessa voidaan myös muuttaa asetuksia, avaa jokaista varten oma komentorivi kun puhesynteesi on käynnistetty
 	- rostopic pub gender std_msgs/String <tähän "woman" tai "man"> (huom! ei valittavissa formanttisynteesille)
-	- rostopic pub tts_type std_msgs/String <tähän "concat" tai "formant"> (synteesin tyyppi)
-	- rostopic pub language std_msgs/String <tähän kieli>   (tukee toistaiseksi vain suomen kieltä)
-	- rostopic pub prosody std_msgs/String <tähän asetus>   (ei toteutettu vielä)
+	- rostopic pub tts_type std_msgs/String <tähän "concat" tai "formant"> (synteesin tyyppi; on oletuksena concat, käytä formant omalla vastuulla, sillä sen synkka ei ole niin hyvä)
 	
 	Ja kun asetusten vaihdon viesti on julkaistu, paina Ctrl-C, ennen kuin jatkat vaiheisiin (iv) ja (v).
 
