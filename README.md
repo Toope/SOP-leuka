@@ -54,6 +54,8 @@ Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
 	- rostopic pub tts_type std_msgs/String <tähän "concat" tai "formant"> (synteesin tyyppi)
 	- rostopic pub language std_msgs/String <tähän kieli>   (tukee toistaiseksi vain suomen kieltä)
 	- rostopic pub prosody std_msgs/String <tähän asetus>   (ei toteutettu vielä)
+	Ja kun asetusten vaihdon viesti on julkaistu, paina Ctrl-C, ennen kuin jatkat vaiheisiin (iv) ja (v).
+
 
 Jos tulee erroria, että pakettia leuka ei löydetä, tee catkin_make ja source uudestaan. 
 
