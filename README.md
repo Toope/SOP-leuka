@@ -1,6 +1,12 @@
 # SOP-leuka
 SOP-kurssin puhesynteesi- ja leukaryhmän repository.
 
+# Huomattavia seikkoja
+
+Python: On testattu ja toimii Python-versiolla 2.7.17. Pythonissa tarvittavia kirjastoja ovat ainakin numpy, scipy, pygame, soundfile, playsound, wave, sys, rospy ja pydub, kannattaa asennella ne pip:illä ennen paketin käyttöä, esim. pip install pygame.
+
+ROS: On testattu ja toimii ros-melodic:illa. Tarvitaan paketteja rosserial_arduino, rosserial_python, rosserial_client, roscpp, rospy ja std_msgs. Jos tulee ongelmia puuttuvien pakettien kanssa, asenna ne näin: sudo apt-get ros-melodic-puuttuva-paketti, esim. sudo apt-get ros-melodic-rosserial-arduino
+
 
 # Käyttöohjeet
 
@@ -31,9 +37,6 @@ catkin_make
 Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
 ![Vaihe 4](img/vaihe4.PNG)
 
-
-- jos tulee ongelmia puuttuvien pakettien kanssa, asenna ne näin: sudo apt-get ros-melodic-puuttuva-paketti, esim. sudo apt-get ros-melodic-rosserial-arduino
-- jos tulee ongelmia puuttuvien python-kirjastojen kanssa, asenna ne näin: pip install kirjaston_nimi, esim. pip install pygame
 
 4. Yhdistä arduino koneeseen (ja odota hetki että kone tunnistaa arduinon) ja servo arduinoon (servon datapinni arduinon pinniin 1, VCC arduinon pinniin 5V ja GND arduinon pinniin GND) ja aja seuraava komento, jolloin koodi uploadaa arduinolle
 ```
