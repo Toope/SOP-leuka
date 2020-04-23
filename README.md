@@ -52,14 +52,13 @@ Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
 	2.  ``` rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=1000000  ```   (servon noden käynnistys)
 	3.  ```rosrun leuka tts.py  ```   (puhesynteesin noden käynnistys)
 	4.  ```rostopic pub text std_msgs/String "testilause."   ```  (text-kanavalle annetaan syötteeksi haluttu lause)
-	5.  ``` rostopic pub servo_ready std_msgs/Bool True  ```       (tämän lipun asettaminen aloittaa puheen)
 
 	Halutessa voidaan myös muuttaa asetuksia, avaa jokaista varten oma komentorivi kun puhesynteesi on käynnistetty
 	- rostopic pub gender std_msgs/String <tähän "woman" tai "man"> (huom! ei valittavissa formanttisynteesille)
 	- rostopic pub tts_type std_msgs/String <tähän "concat" tai "formant"> (synteesin tyyppi; on oletuksena concat, käytä formant omalla vastuulla, sillä sen synkka ei ole niin hyvä)
 	
-	Ja kun asetusten vaihdon viesti on julkaistu, paina Ctrl-C, ennen kuin jatkat vaiheisiin (iv) ja (v).
-	Jos haluat vaihtaa puhuttavaa lausetta, paina Ctrl-C komentoriveillä (iv) ja (v), vaihda lause ja aja vaiheet sitten uudestaan. Ei tarvitse sulkea joka välissä komentorivejä (i) - (iii).
+	Ja kun asetusten vaihdon viesti on julkaistu, paina Ctrl-C, ennen kuin jatkat vaiheeseen (iv)
+	Jos haluat vaihtaa puhuttavaa lausetta, paina Ctrl-C komentorivillä (iv) , vaihda lause ja aja vaihe sitten uudestaan. Ei tarvitse sulkea joka välissä komentorivejä (i) - (iii).
 
 
 Jos tulee erroria, että pakettia leuka ei löydetä, tee catkin_make ja source uudestaan. 
