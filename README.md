@@ -1,7 +1,7 @@
 # SOP-leuka
 SOP-kurssin puhesynteesi- ja leukaryhmän repository.
 
-# Huomattavia seikkoja
+## Huomattavia seikkoja
 
 Python: On testattu ja toimii Python-versiolla 2.7.17. Pythonissa tarvittavia kirjastoja ovat ainakin numpy, scipy, pygame, soundfile, playsound, wave, sys, rospy ja pydub, kannattaa asennella ne pip:illä ennen paketin käyttöä, esim. pip install pygame.
 
@@ -10,7 +10,7 @@ ROS: On testattu ja toimii ros-melodic:illa. Tarvitaan paketteja rosserial_ardui
 Arduino: On testattu ja toimii Arduino IDE versiolla 1.8.9. 
 
 
-# Käyttöohjeet
+## Käyttöohjeet
 
 1. Tee oma catkin workspace
   ```
@@ -59,6 +59,7 @@ Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
 	- rostopic pub tts_type std_msgs/String <tähän "concat" tai "formant"> (synteesin tyyppi; on oletuksena concat, käytä formant omalla vastuulla, sillä sen synkka ei ole niin hyvä)
 	
 	Ja kun asetusten vaihdon viesti on julkaistu, paina Ctrl-C, ennen kuin jatkat vaiheisiin (iv) ja (v).
+	Jos haluat vaihtaa puhuttavaa lausetta, paina Ctrl-C komentoriveillä (iv) ja (v), vaihda lause ja aja vaiheet sitten uudestaan. Ei tarvitse sulkea joka välissä komentorivejä (i) - (iii).
 
 
 Jos tulee erroria, että pakettia leuka ei löydetä, tee catkin_make ja source uudestaan. 
