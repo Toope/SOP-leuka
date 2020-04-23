@@ -7,6 +7,8 @@ Python: On testattu ja toimii Python-versiolla 2.7.17. Pythonissa tarvittavia ki
 
 ROS: On testattu ja toimii ros-melodic:illa. Tarvitaan paketteja rosserial_arduino, rosserial_python, rosserial_client, roscpp, rospy ja std_msgs. Jos tulee ongelmia puuttuvien pakettien kanssa, asenna ne näin: sudo apt-get ros-melodic-puuttuva-paketti, esim. sudo apt-get ros-melodic-rosserial-arduino
 
+Arduino: On testattu ja toimii Arduino IDE versiolla 1.8.9. 
+
 
 # Käyttöohjeet
 
