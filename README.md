@@ -57,7 +57,8 @@ Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
 	- rostopic pub gender std_msgs/String <tähän "woman" tai "man"> (huom! ei valittavissa formanttisynteesille)
 	- rostopic pub tts_type std_msgs/String <tähän "concat" tai "formant"> (synteesin tyyppi; on oletuksena concat, käytä formant omalla vastuulla, sillä sen synkka ei ole niin hyvä)
 	
-	Ja kun asetusten vaihdon viesti on julkaistu, paina Ctrl-C, ennen kuin jatkat vaiheeseen (iv)
+	Ja kun asetusten vaihdon viesti on julkaistu, paina Ctrl-C, ennen kuin jatkat vaiheeseen (iv).
+	
 	Jos haluat vaihtaa puhuttavaa lausetta, paina Ctrl-C komentorivillä (iv) , vaihda lause ja aja vaihe sitten uudestaan. Ei tarvitse sulkea joka välissä komentorivejä (i) - (iii).
 
 
