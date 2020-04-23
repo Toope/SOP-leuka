@@ -29,21 +29,19 @@ aalto2 = np.array([])
 ajat = []
 kaynnissa = False #Turned on when tts process is requested, ends when the robot talks
 
-def callback(data):#, args): #muodosta_aalto(teksti = " ", gender = "man", kieli = "FI" ,prosodic_information = None):   	
-#tuntuu leikkaavan sanan lopusta patkan pois jos ei paata lausetta mihinkaan valimerkkiin
+def callback(data):
     global kaynnissa, sanottava_sana, super_type, aalto2, ajat
     rospy.loginfo("Tuotetaan tiedosto")
-    #rospy.loginfo(data.data)
     if not kaynnissa:
-        teksti = data.data #args[0], kun yritti monella stringillä
-        teksti += '.'
+        teksti = data.data
+        teksti += '. '
         sanottava_sana = ""
         kaynnissa = True
+        ajat = []
 
         if tts_settings["Type"] == "formant":
             super_type = 0
             sampling_rate = 2**13
-            #print(sampling_rate)
             aalto = np.array([])
             fs = sampling_rate
             leikkaus = 0
@@ -67,7 +65,7 @@ def callback(data):#, args): #muodosta_aalto(teksti = " ", gender = "man", kieli
                 else:
                     merkki = markki
                     ao_flag = False
-            #print(merkki)
+
                 if merkki in aanteet_used.formantit["vokaali"] or merkki in aanteet_used.formantit["konsonantti"]:
                     if flag:
                         if merkki == "g" and edellinen_merkki == "n":
@@ -80,53 +78,41 @@ def callback(data):#, args): #muodosta_aalto(teksti = " ", gender = "man", kieli
                             if (edellinen_merkki + merkki) in aanteet_used.formantit["diftongi"]:
                                 aalto = np.append(aalto, for_matti(edellinen_merkki, "vokaali", fs))
                                 aalto = np.append(aalto, for_matti(merkki, "vokaali", fs))
-                                sanottava_sana += edellinen_merkki
                                 ajat.append([formantit2.formantit["vokaali"][edellinen_merkki][4],1])
-                                sanottava_sana += merkki
                                 ajat.append([formantit2.formantit["vokaali"][merkki][4],1])
                             elif (edellinen_merkki + merkki) in aanteet_used.formantit["aakkoset"]:
                                 aalto = np.append(aalto, for_matti(edellinen_merkki, "vokaali", fs))
                                 aalto = np.append(aalto, for_matti(merkki, "vokaali", fs))
-                                sanottava_sana += edellinen_merkki
                                 ajat.append([formantit2.formantit["vokaali"][edellinen_merkki][4],1])
-                                sanottava_sana += merkki
                                 ajat.append([formantit2.formantit["vokaali"][merkki][4],1])
                             else:
                                 aalto = np.append(aalto, for_matti(edellinen_merkki, "vokaali", fs))
                                 aalto = np.append(aalto, for_matti(merkki, "vokaali", fs))
-                                sanottava_sana += edellinen_merkki
                                 ajat.append([formantit2.formantit["vokaali"][edellinen_merkki][4],1])
-                                sanottava_sana += merkki
                                 ajat.append([formantit2.formantit["vokaali"][merkki][4],1])
+                            sanottava_sana += edellinen_merkki
+                            sanottava_sana += merkki
                             flag = False
                             edellinen_merkki = "666"
                         
                         elif merkki in aanteet_used.formantit["konsonantti"] and edellinen_merkki in aanteet_used.formantit["konsonantti"]:
-                            if (edellinen_merkki + merkki) in aanteet_used.formantit["aakkoset"]:
-                                aalto = np.append(aalto, for_matti(edellinen_merkki+merkki, "aakkoset", fs))
-                                sanottava_sana += edellinen_merkki
-                                ajat.append([formantit2.formantit["vokaali"][edellinen_merkki][4],1])
-                                sanottava_sana += merkki
-                                ajat.append([formantit2.formantit["vokaali"][merkki][4],1])
-                            else:
-                                aalto = np.append(aalto, for_matti(edellinen_merkki, "konsonantti", fs))
-                                aalto = np.append(aalto, for_matti(merkki, "konsonantti", fs))
-                                sanottava_sana += edellinen_merkki
-                                ajat.append([formantit2.formantit["konsonantti"][edellinen_merkki][4],0])
-                                sanottava_sana += merkki
-                                ajat.append([formantit2.formantit["konsonantti"][edellinen_merkki][4],0])
+                            aalto = np.append(aalto, for_matti(edellinen_merkki, "konsonantti", fs))
+                            aalto = np.append(aalto, for_matti(merkki, "konsonantti", fs))
+                            sanottava_sana += edellinen_merkki
+                            ajat.append([formantit2.formantit["konsonantti"][edellinen_merkki][4],0])
+                            sanottava_sana += merkki
+                            ajat.append([formantit2.formantit["konsonantti"][edellinen_merkki][4],0])
                             flag = False
                             edellinen_merkki = "666"
                         
                         else:
                             if edellinen_merkki in aanteet_used.formantit["vokaali"]:
                                 aalto = np.append(aalto, for_matti(edellinen_merkki, "vokaali", fs))
-                                sanottava_sana += edellinen_merkki
                                 ajat.append([formantit2.formantit["vokaali"][edellinen_merkki][4],1])
                             else:
                                 aalto = np.append(aalto, for_matti(edellinen_merkki, "konsonantti", fs))
-                                sanottava_sana += edellinen_merkki
                                 ajat.append([formantit2.formantit["konsonantti"][edellinen_merkki][4],0])
+                            sanottava_sana += edellinen_merkki
                             flag = True
                             edellinen_merkki = merkki
                     else:
@@ -145,7 +131,7 @@ def callback(data):#, args): #muodosta_aalto(teksti = " ", gender = "man", kieli
 
             if(kieli == "EN"):
                pass
-            else:#elif(kieli == "FI"):
+            else:
                 if(gender == "man"):                #anna lauseen jalkeen argumentti kumman aanella haluat kuulla puheen
                     aanteet_used = aanteet3
                 elif(gender == "woman"):
@@ -153,8 +139,6 @@ def callback(data):#, args): #muodosta_aalto(teksti = " ", gender = "man", kieli
             
             if(aanteet_used == None): #parametreja ei loytynyt, tehdaan defaultilla
                 aanteet_used = aanteet3 
-            
-            #rospy.loginfo(gender)
          
             lista = list(teksti.lower())
             combined_sounds = AudioSegment.empty()
@@ -188,40 +172,30 @@ def callback(data):#, args): #muodosta_aalto(teksti = " ", gender = "man", kieli
                         elif merkki in aanteet_used.aalto_aanne["vokaali"] and edellinen_merkki in aanteet_used.aalto_aanne["vokaali"]:
                             if (edellinen_merkki + merkki) in aanteet_used.aalto_aanne["diftongi"]:
                                 combined_sounds += aanteet_used.aalto_aanne["diftongi"].get(edellinen_merkki + merkki)
-                                sanottava_sana += edellinen_merkki
-                                sanottava_sana += merkki
                             elif (edellinen_merkki + merkki) in aanteet_used.aalto_aanne["aakkoset"]:
                                 combined_sounds += aanteet_used.aalto_aanne["aakkoset"].get(edellinen_merkki + merkki)
-                                sanottava_sana += edellinen_merkki
-                                sanottava_sana += merkki
                             else:
                                 combined_sounds += aanteet_used.aalto_aanne["vokaali"].get(edellinen_merkki)
                                 combined_sounds += aanteet_used.aalto_aanne["vokaali"].get(merkki)
-                                sanottava_sana += edellinen_merkki
-                                sanottava_sana += merkki
+                            sanottava_sana += edellinen_merkki
+                            sanottava_sana += merkki
                             flag = False
                             edellinen_merkki = "666"
                     
                         elif merkki in aanteet_used.aalto_aanne["konsonantti"] and edellinen_merkki in aanteet_used.aalto_aanne["konsonantti"]:
-                            if (edellinen_merkki + merkki) in aanteet_used.aalto_aanne["aakkoset"]:
-                                combined_sounds += aanteet_used.aalto_aanne["aakkoset"].get(edellinen_merkki + merkki)
-                                sanottava_sana += edellinen_merkki
-                                sanottava_sana += merkki
-                            else:
-                                combined_sounds += aanteet_used.aalto_aanne["konsonantti"].get(edellinen_merkki)
-                                combined_sounds += aanteet_used.aalto_aanne["konsonantti"].get(merkki)
-                                sanottava_sana += edellinen_merkki
-                                sanottava_sana += merkki
+                            combined_sounds += aanteet_used.aalto_aanne["konsonantti"].get(edellinen_merkki)
+                            combined_sounds += aanteet_used.aalto_aanne["konsonantti"].get(merkki)
+                            sanottava_sana += edellinen_merkki
+                            sanottava_sana += merkki
                             flag = False
                             edellinen_merkki = "666"
                             
                         else:
                             if edellinen_merkki in aanteet_used.aalto_aanne["vokaali"]:
                                 combined_sounds += aanteet_used.aalto_aanne["vokaali"].get(edellinen_merkki)
-                                sanottava_sana += edellinen_merkki
                             else:
                                 combined_sounds += aanteet_used.aalto_aanne["konsonantti"].get(edellinen_merkki)
-                                sanottava_sana += edellinen_merkki
+                            sanottava_sana += edellinen_merkki
                             flag = True
                             edellinen_merkki = merkki
                     else:
@@ -240,6 +214,7 @@ def callback(data):#, args): #muodosta_aalto(teksti = " ", gender = "man", kieli
             tahti.sleep()
             rospy.loginfo(sanottava_sana)
             pub0.publish(True)
+        pub2.publish(True)
 
 
 def puhu(data):
@@ -265,16 +240,17 @@ def puhu(data):
                         ao_flag = True
                         continue 
                     if kirjain in aanteet.aalto_aanne["vokaali"] or (ao_flag and (ord(kirjain) ==  164 or ord(kirjain) == 182)):
-                        rospy.loginfo(1)
+                        #rospy.loginfo(1)
                         pub1.publish(1)
                     else:
-                        rospy.loginfo(0)
+                        #rospy.loginfo(0)
                         pub1.publish(0)
                     ao_flag = False
                     tahti.sleep()
                 kaynnissa = False
+                pygame.mixer.quit()
             else:
-                pygame.mixer.init(2**13, -16, 1) #fs kHz, 16-bit signed, mono
+                pygame.mixer.init(2**13, -16, 1) #fs Hz, 16-bit signed, mono
                 sound = pygame.sndarray.make_sound(np.int16(aalto2 * 32767))
                 channel = sound.play(0)
                 for t in ajat:
@@ -282,6 +258,7 @@ def puhu(data):
                     tahti = rospy.Rate(1/t[0])
                     tahti.sleep()
                 kaynnissa = False
+                pygame.mixer.quit()
                     
     
 
@@ -312,22 +289,18 @@ def tts_control():
     rospy.spin()
 
     
-def for_matti(kirjain, tyyppi, forfuckssake):
+def for_matti(kirjain, tyyppi, fs):
     F = np.array(formantit2.formantit[tyyppi][kirjain][0:4])  #4 ensimmäistä formanttia
     Ba = np.array([20, 30, 50, 60])                           #Bandwith formanteille
     
     dur = formantit2.formantit[tyyppi][kirjain][4]   #kesto
-    fs = forfuckssake                                #näytteenottotaajuus
-    nsamps = int(math.floor(dur*fs))                      #Näytteiden määrä
-    R = np.exp(-np.pi*Ba/fs)                          #naparadius
+    nsamps = int(math.floor(dur*fs))                 #Näytteiden määrä
+    R = np.exp(-np.pi*Ba/fs)                         #naparadius
     theta = (2*np.pi*F)/fs                           #napakulma
     poles = R * np.exp(1j*theta)                     #Navat
     [B,A] = sg.zpk2tf(0,poles,1)                     #Kontrolli
-    h = sg.freqz(B,A,1024)
-    h = h/np.max(h)
-    hdb = 20*np.log10(np.abs(h)+10**-100)
     
-    f0 = 105                                          #pitch
+    f0 = 105                                         #pitch
     w0T = 2*np.pi*f0/fs                              #normalisoitu
     
     nharm = int(math.floor((fs/2)/f0))
@@ -341,12 +314,6 @@ def for_matti(kirjain, tyyppi, forfuckssake):
         
         
     sig = sig/np.max(sig)
-
-    nfft = 1024
-    fni = np.arange(0,fs-fs/nfft,fs/nfft)
-    #print(len(fni))
-    M = 256
-    w = np.hanning(M)
     
     speech = sg.lfilter(np.array([1.0]),A,sig)        
     return speech
@@ -360,9 +327,7 @@ sub4 = rospy.Subscriber("servo_ready", Bool, puhu)
 sub2 = rospy.Subscriber("tts_type", String, update_tts_type)
 pub0 = rospy.Publisher("tts_ready", Bool, queue_size = 1)
 pub1 = rospy.Publisher("servo", UInt16, queue_size = 10)
+pub2 = rospy.Publisher("servo_ready", Bool, queue_size = 1)
 
 if __name__ == "__main__":
     tts_control()
-    
-    
-            

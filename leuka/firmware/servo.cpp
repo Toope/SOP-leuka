@@ -2,12 +2,10 @@
 #include <ArduinoHardware.h>
 #include <ros.h>
 #include <std_msgs/UInt16.h>
-#include <SoftwareSerial.h>
 
 ros::NodeHandle  nh;
-SoftwareSerial mySerial(10, 11); // (RX, TX)
 
-//servon liikerata 900-945-990
+//servon liikerata 900-990
 void servo_cb( const std_msgs::UInt16& cmd_msg){
  
   unsigned char hexl, hexh, CRC_L, CRC_H;
@@ -36,12 +34,9 @@ void servo_cb( const std_msgs::UInt16& cmd_msg){
      
   //                                         headeria          length      write osoite      arvo 
   unsigned char TxPacket[16] = { 0xFF, 0xFF, 0xFD, 0x00, 0xFE, 0x09, 0x00, 0x03, 0x1E, 0x00, hexl, hexh, 0x00, 0x00, CRC_L, CRC_H};
-  //TxPacket[14] = CRC_L;
-  //TxPacket[15] = CRC_H;
 
   Serial.write(TxPacket,16);
-  nh.logdebug("liikun!");
-  delay(1);
+  //delay(1);
 
 }
 
@@ -50,9 +45,6 @@ ros::Subscriber<std_msgs::UInt16> sub("servo", &servo_cb);
 void setup()
 { 
   Serial.begin(1000000);
-  pinMode(10, INPUT);
-  pinMode(11, OUTPUT);
-  mySerial.begin(1000000);
 
   nh.getHardware()->setBaud(1000000);  //set nh to same baudrate as serial
   nh.initNode();
