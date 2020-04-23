@@ -20,14 +20,17 @@ catkin_make
 source devel/setup.bash
   ```
 Tuloksena tällainen rakenne:
+
 ![Vaihe 1](img/vaihe1.PNG)
 
 2. Kopioi kansio 'leuka' oman workspacen src kansioon (jätä src-kansion sisäinen CMakeLists.txt rauhaan) 
 
 Kansion src sisältö ennen:
+
 ![Vaihe 2](img/vaihe2.PNG)
 
 Ja jälkeen:
+
 ![Vaihe 3](img/vaihe3.PNG)
 
 3. Ja tee sitten catkin_make 
@@ -37,6 +40,7 @@ cd oma_ws
 catkin_make
 ```
 Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
+
 ![Vaihe 4](img/vaihe4.PNG)
 
 
@@ -45,6 +49,7 @@ Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
 catkin_make leuka_firmware_lservo-upload
 ```
 Tuloksena pitäisi olla jotakuinkin tällaiset ilmoitukset:
+
 ![Vaihe 5](img/vaihe5.PNG)
 
 5. Avaa 5 eri komentoriviä auki käyttöä varten
@@ -71,6 +76,7 @@ Pelkän servon toimintaa voidaan testata avaamalla komentorivit (i) ja (ii) ja k
 Pelkän puhesynteesin toimintaa voidaan testata jättämällä komentorivi (ii) käynnistys pois välistä.
 
 Tältä näyttää kokonaisuudessaan puhesynteesin + servon ajaminen. Vaihe (ii) heittää mismatch-erroria mutta kaikki toimii kuitenkin kuten pitää. 
+
 ![Vaihe 6](img/vaihe6.PNG)
 
 
